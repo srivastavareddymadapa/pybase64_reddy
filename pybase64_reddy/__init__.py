@@ -2,13 +2,32 @@
 
 import base64
 
-def encode(data: str) -> str:
-    encoded_bytes = base64.b64encode(data.encode('utf-8'))
-    return encoded_bytes.decode('utf-8')
+def b64encode(data: bytes) -> bytes:
+    """
+    Encode bytes to base64.
 
-def decode(data: str) -> str:
+    Args:
+        data (bytes): The bytes to encode.
+
+    Returns:
+        bytes: The base64 encoded bytes.
+    """
+    return base64.b64encode(data)
+
+def b64decode(data: bytes) -> bytes:
+    """
+    Decode base64 bytes.
+
+    Args:
+        data (bytes): The base64 encoded bytes to decode.
+
+    Returns:
+        bytes: The decoded bytes.
+
+    Raises:
+        ValueError: If the input is not valid base64.
+    """
     try:
-        decoded_bytes = base64.b64decode(data.encode('utf-8'))
-        return decoded_bytes.decode('utf-8')
+        return base64.b64decode(data)
     except Exception as e:
         raise ValueError("Invalid base64 input") from e
